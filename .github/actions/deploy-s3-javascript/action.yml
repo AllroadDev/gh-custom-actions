@@ -10,6 +10,10 @@ inputs:
     default: 'eu-central-1'
   dist-folder:
     description: 'The folder containing the deployable files.'
+outputs:
+  website-url:
+    description: 'The URL of the deployed website.'
+    
 runs:
   using: 'node16'
   main: 'main.js'
