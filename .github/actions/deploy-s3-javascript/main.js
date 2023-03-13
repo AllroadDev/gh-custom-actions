@@ -1,9 +1,21 @@
 const core = require('@actions/core');
-const github = require('@actions/github');
+// const github = require('@actions/github'); gives extra data to get info github.getOctokit()
 const exec = require('@actions/exec');
 
 function run() {
-    core.notice('Hello from my custom JS Action')
+    // 1) Get some input values
+    const bucket = core.getInput('bucket', { required: true });
+    const bucketRegion = core.getInput('bucket-region', { required: true });
+    const distFolder = core.getInput('dist-folder', { required: true });
+
+    // github.getOctokit().
+
+    // 2) upload files
+    const s3Uri = `s3:://${bucket}`;  
+   
+    exec.exec(`aws s3 sync <local-folder> ${distFolder} ${s3Uri } --region ${bucketRegion}`);  //to syncronise local folder to S3 bucket
+
+    core.notice('Hello from my custom JS Action');
 }
 
 run();
