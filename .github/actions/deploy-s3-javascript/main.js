@@ -13,7 +13,7 @@ function run() {
     // 2) upload files
     const s3Uri = `s3:://${bucket}`;  
    
-    exec.exec(`aws s3 sync <local-folder> ${distFolder} ${s3Uri } --region ${bucketRegion}`);  //to syncronise local folder to S3 bucket
+    exec.exec(`aws s3 sync ${distFolder} ${s3Uri} --region ${bucketRegion}`);  //to syncronise local folder to S3 bucket
 
     core.notice('Hello from my custom JS Action');
 }
